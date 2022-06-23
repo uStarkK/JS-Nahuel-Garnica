@@ -1,8 +1,9 @@
+let score, flag;
 function validarIngreso()
 {
     if(flag !="no" && flag !="si")
     {
-        alert("Amigo, no pusiste ni si, ni no, escribi de nuevo");
+        alert("Amigo, no pusiste ni si, ni no, escribi de nuevo")
         flag = prompt("iNGRESA SI O NO").toLowerCase()
         if(flag == "si" || flag =="no")
         {
@@ -11,20 +12,38 @@ function validarIngreso()
         {
             while(flag !== "si" && flag !=="no")
             {
-                alert("Amigo, no pusiste ni si, ni no, escribi de nuevo, sos re tonto");
+                alert("Amigo, no pusiste ni si, ni no, escribi de nuevo, sos re tonto")
                 flag = prompt("iNGRESA SI O NO uwu").toLowerCase()
                 console.log(flag);
             }
         }
     }   
 }
-let flag = prompt("Quiere agregar notas? Ingrese 'Si' o 'No'").toLowerCase()
+flag = prompt("Quiere agregar notas? Ingrese 'Si' o 'No'").toLowerCase()
 validarIngreso();
+
+
 
 while(flag != "no")
 {
     
-let score = parseInt(prompt("Ingrese numero entre 1 y 10"))
+    score = parseInt(prompt("Ingrese numero entre 1 y 10"))
+    if(isNaN(score) == true)
+    {
+        alert("Man, no pusiste un número, intentá de nuevo")
+        score = parseInt(prompt("Ingrese numero entre 1 y 10"))
+        if(isNaN(score) == false)
+        {
+            console.log("Pusiste el numero" + score)
+        }else
+            {
+                while(isNaN(score) == true)
+                    {
+                        alert("Seguis sin poner un número pa, no me hagas enojar")
+                        score = parseInt(prompt("Ingrese numero entre 1 y 10"))
+                    }
+            }
+    }
 
 if(score>=1 && score<=10)
     {
@@ -43,7 +62,7 @@ if(score>=1 && score<=10)
         }
     } else
         {
-            console.log("Amigo pone bien el score")
+            console.log("Amigo pone bien el numero")
         }
 flag = prompt("Capo seguis ingresando? Ingrese 'si' o 'no'").toLowerCase()
 validarIngreso();
