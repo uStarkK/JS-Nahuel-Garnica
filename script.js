@@ -1,4 +1,6 @@
 let score, flag;
+const notasAlumnos = [];
+
 function validarIngreso()
 {
     if(flag !="no" && flag !="si")
@@ -47,18 +49,20 @@ validarNota();
 
 if(score>=1 && score<=10)
     {
+        notasAlumnos.push(score)
+        console.log(notasAlumnos)
         if(score>=1 && score<=5)
         {
-            console.log("Capo desaprobaste")
+            console.log("Capo desaprobaste, te sacaste un "+ score)
         } else if(score==6 || score==7)
         {
-            console.log("Capo aprobaste raspando")
+            console.log("Capo aprobaste raspando te sacaste un "+ score)
         } else if(score==8 || score==9)
         {
-            console.log("Capo aprobaste")
+            console.log("Capo aprobaste te sacaste un "+ score)
         } else 
         {
-            console.log("Capo aprobaste zarpado")
+            console.log("Capo aprobaste zarpado te sacaste un "+ score)
         }
     } else
         {
@@ -67,3 +71,4 @@ if(score>=1 && score<=10)
 flag = prompt("Capo seguis ingresando? Ingrese 'si' o 'no'").toLowerCase()
 validarIngreso();
 }  
+
