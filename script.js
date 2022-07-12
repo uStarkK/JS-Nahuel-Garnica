@@ -1,5 +1,5 @@
 let score, flag, cantidadAlumnos;
-const alumnosIngresados = [], alumnosAprobados = [];
+const alumnosIngresados = []; 
 const soloLetras = /^[ a-zA-Z ]+$/;
 
 class Alumnos
@@ -91,7 +91,7 @@ function validarNombre(nombre) // => Verifica si el nombre ingresado contiene n�
         while(soloLetras.test(nombre) == false)
         {
             alert("Flaco sos tonto no me pongás números");
-            nombre = prompt("Usted no ha ingresado un nombre válido. Por favor, ingreselo de nuevo.");
+            nombre = prompt("Usted no ha ingresado un nombre válido. Por favor, ingreselo de nuevo.").toUpperCase();
         }
     }
 }
@@ -145,7 +145,7 @@ function validarNumeroEdad() // => Verifica que la edad ingresada sea un número
             {
                 for(let i = 0; i < cantidadAlumnos; i++)
                 {
-                    nombreApellido = prompt("Ingrese nombre y apellido del alumno");
+                    nombreApellido = prompt("Ingrese nombre y apellido del alumno").toUpperCase();
                     validarNombre(nombreApellido);
                     edad = parseInt(prompt("Ingrese edad del alumno"));
                     validarEdad()
@@ -163,6 +163,7 @@ function validarNumeroEdad() // => Verifica que la edad ingresada sea un número
         }while(flag != "no");
         
     }
-alumnosAprobados = (alumnosIngresados.filter(alumnosIngresados => alumnosIngresados.nota > 5))
+
+const alumnosAprobados = (alumnosIngresados.filter(alumnosIngresados => alumnosIngresados.nota > 5))
 
 alumnosAprobados.forEach(Alumnos => {console.log(`${Alumnos.nombreApellido} ha aprobado con ${Alumnos.nota}!`)});
