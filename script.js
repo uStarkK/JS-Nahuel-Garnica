@@ -1,7 +1,6 @@
 let score, flag, cantidadAlumnos;
-let numeros = "0123456789"
 const alumnosIngresados = [], alumnosAprobados = [];
-const soloLetras = /^[a-zA-Z]+$/;
+const soloLetras = /^[ a-zA-Z ]+$/;
 
 class Alumnos
 {
@@ -12,7 +11,7 @@ class Alumnos
         this.nota = nota;
     }
 }
-function validarIngreso()
+function validarIngreso() // => Verifica el ingreso de la palabra "Si" y la palabra "No"
 {
     if(flag !="no" && flag !="si")
     {
@@ -31,8 +30,40 @@ function validarIngreso()
         }
     }   
 }
-function validarNota()
+function validarRangoNota() // => Verifica si la nota ingresada se encuentra dentro del rango válido (1 - 10)
 {
+    if(nota > 0 && nota <= 10)
+            {
+                if(nota >= 1 && nota <= 5)
+                {
+                    console.log("El alumno desaprobó con "+ nota)
+                } else if(nota == 6 || nota == 7)
+                    {
+                        console.log("El alumno aprobó raspando con  "+ nota)
+                    } else if(nota == 8 || nota == 9)
+                        {
+                            console.log("El alumno aprobo con "+ nota)
+                        } else 
+                            {
+                                console.log("El alumno aprobó re zarpado con "+ nota)
+                            }
+            } else
+                {
+                    console.log("Amigo pone bien el numero")
+                    nota = prompt("Ingrese una nota del 1 al 10")
+                    if(nota < 1 || nota > 10)
+                        {
+                            while (nota < 1 || nota > 10)
+                                {
+                                    console.log("Amigo pone bien el numero")
+                                    nota = prompt("Por favor, ingrese una nota válida (entre 1 y 10)")
+                                }
+                        }
+                }
+}
+function validarNota() // => Verifica si la nota ingresada es un número
+{
+    validarRangoNota()
     if(isNaN(nota) == true)
     {
         alert("Man, no pusiste un número, intentá de nuevo")
@@ -40,50 +71,19 @@ function validarNota()
         if(isNaN(nota) == false)
         {
             console.log("Pusiste el numero " + nota)
+            validarRangoNota();
         }else
             {
                 while(isNaN(nota) == true)
                     {
                         alert("Seguis sin poner un número pa, no me hagas enojar")
-                        nota = parseInt(prompt("Ingrese numero entre 1 y 10"))
+                        nota = parseInt(prompt("Ingrese numero entre 1 y 10 por favor"))
+                        validarRangoNota();
                     }
             }
     }
-
-    if(nota > 0 && nota <= 10)
-    {
-        if(nota >= 1 && nota <= 5)
-        {
-            console.log("El alumno desaprobó con "+ nota)
-        } else if(nota == 6 || nota == 7)
-        {
-            console.log("El alumno aprobó raspando con  "+ nota)
-        } else if(nota == 8 || nota == 9)
-        {
-            console.log("El alumno aprobo con "+ nota)
-        } else 
-        {
-            console.log("El alumno aprobó re zarpado con "+ nota)
-        }
-    } else
-        {
-            console.log("Amigo pone bien el numero")
-            nota = prompt("Ingrese una nota del 1 al 10")
-            if(nota < 1 || nota > 10)
-            {
-                while (nota < 1 || nota > 10)
-                {
-                    console.log("Amigo pone bien el numero")
-                    nota = prompt("Por favor, ingrese una nota válida (entre 1 y 10)")
-                }
-            }
-        }
 }
-function validarNumeroNota()
-{
-
-}
-function validarNombre(nombre)
+function validarNombre(nombre) // => Verifica si el nombre ingresado contiene números
 {
     soloLetras.test(nombre);
     if(soloLetras.test(nombre) == false)
@@ -95,7 +95,7 @@ function validarNombre(nombre)
         }
     }
 }
-function validarEdad()
+function validarEdad() // =>Verifica que la edad ingresada esté dentro del rango válido (8 - 100)
 {
     validarNumeroEdad()
     if(edad < 8 || edad > 100)
@@ -114,7 +114,7 @@ function validarEdad()
         }
     }
 }
-function validarNumeroEdad()
+function validarNumeroEdad() // => Verifica que la edad ingresada sea un número
 {
     if(isNaN(edad) == true)
     {
@@ -165,50 +165,4 @@ function validarNumeroEdad()
     }
 alumnosAprobados = (alumnosIngresados.filter(alumnosIngresados => alumnosIngresados.nota > 5))
 
-alumnosAprobados.forEach(Alumnos => {console.log(Alumnos)});
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* flag = prompt("Quiere agregar notas? Ingrese 'Si' o 'No'").toLowerCase()
-validarIngreso();
-
-while(flag != "no")
-{
-score = parseInt(prompt("Ingrese numero entre 1 y 10"))
-validarNota();
-
-if(score>=1 && score<=10)
-    {
-        notasAlumnos.push(score)
-        console.log(notasAlumnos)
-        if(score>=1 && score<=5)
-        {
-            console.log("Capo desaprobaste, te sacaste un "+ score)
-        } else if(score==6 || score==7)
-        {
-            console.log("Capo aprobaste raspando te sacaste un "+ score)
-        } else if(score==8 || score==9)
-        {
-            console.log("Capo aprobaste te sacaste un "+ score)
-        } else 
-        {
-            console.log("Capo aprobaste zarpado te sacaste un "+ score)
-        }
-    } else
-        {
-            console.log("Amigo pone bien el numero")
-        }
-flag = prompt("Capo seguis ingresando? Ingrese 'si' o 'no'").toLowerCase()
-validarIngreso();
-}  
- */
+alumnosAprobados.forEach(Alumnos => {console.log(`${Alumnos.nombreApellido} ha aprobado con ${Alumnos.nota}!`)});
