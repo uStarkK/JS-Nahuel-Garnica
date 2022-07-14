@@ -1,4 +1,4 @@
-let score, flag, cantidadAlumnos;
+let score, flag, cantidadAlumnos, counterAlumnos = 0;
 const alumnosIngresados = []; 
 const soloLetras = /^[ a-zA-Z ]+$/;
 
@@ -151,15 +151,16 @@ function validarNumeroEdad() // => Verifica que la edad ingresada sea un número
                     validarEdad()
                     nota = parseInt(prompt("Ingrese nota del alumno (del 1 al 10)"));
                     validarNota()
-                    alumnosIngresados[i] = new Alumnos (nombreApellido, edad, nota);
+                    alumnosIngresados[counterAlumnos] = new Alumnos (nombreApellido, edad, nota);
                     console.log(alumnosIngresados);
+                    counterAlumnos++
                 }
             } else
-            {
-                alert("La cantidad de alumnos ingresada no es valida")
-            }
+                {
+                    alert("La cantidad de alumnos ingresada no es valida")
+                }
             flag = prompt("Desea ingresar mas alumnos? Escriba 'si' para volver al ingreso, 'no' para salir del programa").toLowerCase()
-            validarIngreso()
+                    validarIngreso()
         }while(flag != "no");
         
     }
