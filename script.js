@@ -1,6 +1,8 @@
 let score, flag, cantidadAlumnos, counterAlumnos = 0;
 const alumnosIngresados = []; 
-const soloLetras = /^[ a-zA-Z ]+$/;
+const soloLetras = /^[a-zA-Z \u00f1\u00d1]+$/;
+const formAlumnos = document.getElementById("añadirAlumnos");
+
 
 class Alumnos
 {
