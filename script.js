@@ -48,11 +48,11 @@ const renderizarAlumno = (alumno) => {
 
     const edad = document.createElement("div")
     datos.appendChild(edad)
-    edad.innerHTML = alumno.edad
+    edad.innerHTML = `${alumno.edad} años`
 
     const nota = document.createElement("div")
     datos.appendChild(nota)
-    nota.innerHTML = alumno.nota
+    nota.innerHTML = `Nota: ${alumno.nota} `
 }
 
 formAlumnos.addEventListener("submit", (event) => {
@@ -64,14 +64,32 @@ formAlumnos.addEventListener("submit", (event) => {
         alumnosIngresados.push(nuevoAlumno)
         console.log(alumnosIngresados)
         renderizarAlumno(nuevoAlumno)
+        formAlumnos.reset()
     }
     
 })
 
-const alumnosAprobados = (alumnosIngresados.filter(alumnosIngresados => alumnosIngresados.nota > 5))
+const renderizarAprobados = () =>{
+    containerAlumnos.innerHTML = "";
+    const alumnosAprobados = (alumnosIngresados.filter(alumnosIngresados => alumnosIngresados.nota > 5))
+    alumnosAprobados.forEach(Alumnos => {renderizarAlumno(Alumnos)});
+}
 
-alumnosAprobados.forEach(Alumnos => { console.log(`${Alumnos.nombreApellido} ha aprobado con ${Alumnos.nota}!`) });
 
+const renderizarNoAprobados = () =>{
+    containerAlumnos.innerHTML = "";
+    const alumnosNoAprobados = (alumnosIngresados.filter(alumnosIngresados => alumnosIngresados.nota < 6))
+    alumnosNoAprobados.forEach(Alumnos => {renderizarAlumno(Alumnos)});
+}
 
+const mostrarAprobados = document.getElementById("mostrarAprobados");
 
+mostrarAprobados.addEventListener("click", () =>{
+    renderizarAprobados();
+}) 
 
+const mostrarNoAprobados = document.getElementById("mostrarNoAprobados");
+
+mostrarNoAprobados.addEventListener("click", () =>{
+    renderizarNoAprobados()
+})
