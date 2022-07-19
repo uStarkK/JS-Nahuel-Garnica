@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Hola Samu</title>
 </head>
 <body>
+  <div class="container">
   <form id="añadirAlumnos">
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingInput" placeholder="Nombre y apellido">
+      <input type="text" class="form-control" id="cargarNombre" placeholder="Nombre y apellido">
       <label for="floatingInput">Nombre y apellido </label>
     </div>
     <div class="form-floating">
-      <input type="number" class="form-control" id="floatingInput" placeholder="Edad">
+      <input type="number" class="form-control" id="cargarEdad" placeholder="Edad" min="8" max="100">
       <label for="floatingPassword">Edad</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" id="floatingInput" placeholder="Nota">
+      <input type="number" class="form-control" id="cargarNota" placeholder="Nota" min="1" max="10">
       <label for="floatingInput">Nota</label>
     </div>
     <button type="submit" id="cargarAlumno">Añadir Alumno</button>
   </form>
+</div>
     <script src="script.js"></script>
+
 </body>
-</html>
+</html> 
