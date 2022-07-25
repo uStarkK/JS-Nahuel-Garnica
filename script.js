@@ -1,12 +1,20 @@
 let score, flag, cantidadAlumnos, counterAlumnos = 0;
-const alumnosIngresados = [];
+let alumnosIngresados = [];
 const soloLetras = /^[a-zA-Z \u00f1\u00d1]+$/;
 const formAlumnos = document.getElementById("añadirAlumnos");
 const nombreAlumno = document.getElementById("cargarNombre")
 const edadAlumno = document.getElementById("cargarEdad")
 const notaAlumno = document.getElementById("cargarNota")
+let darkMode;
+if(localStorage.getItem("theme")){
+    darkMode = localStorage.getItem("theme")
+} else{
+    localStorage.setItem("theme", "light")
+}
 
-
+if(darkMode === "dark"){
+    document.body.classList.add("darkMode")
+}
 class Alumnos {
     constructor(nombreApellido, edad, nota) {
         this.nombreApellido = nombreApellido;
@@ -54,6 +62,12 @@ const renderizarAlumno = (alumno) => {
     datos.appendChild(nota)
     nota.innerHTML = `Nota: ${alumno.nota} `
 }
+if(localStorage.getItem("alumnos")){
+    alumnosIngresados = JSON.parse(localStorage.getItem("alumnos"))
+    alumnosIngresados.forEach(alumno => renderizarAlumno(alumno))
+} else{
+    localStorage.setItem("alumnos", JSON.stringify(alumnosIngresados))
+}
 
 formAlumnos.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -65,6 +79,7 @@ formAlumnos.addEventListener("submit", (event) => {
         console.log(alumnosIngresados)
         renderizarAlumno(nuevoAlumno)
         formAlumnos.reset()
+        localStorage.setItem("alumnos", JSON.stringify(alumnosIngresados))
     }
     
 })
@@ -93,3 +108,23 @@ const mostrarNoAprobados = document.getElementById("mostrarNoAprobados");
 mostrarNoAprobados.addEventListener("click", () =>{
     renderizarNoAprobados()
 })
+const mostrarTodos = document.getElementById("mostrarTodos")
+
+mostrarTodos.addEventListener("click", () =>{
+    containerAlumnos.innerHTML = "";
+    alumnosIngresados.forEach(alumno => renderizarAlumno(alumno))
+})
+const botonLight = document.getElementById("lightMode")
+const botonDark = document.getElementById("darkMode")
+
+
+botonLight.addEventListener("click", () =>{
+    document.body.classList.remove("darkMode")
+    localStorage.setItem("theme", "light")
+})
+
+botonDark.addEventListener("click", () =>{
+    document.body.classList.add("darkMode")
+    localStorage.setItem("theme", "dark")
+})
+
